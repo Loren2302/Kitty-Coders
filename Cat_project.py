@@ -1,6 +1,6 @@
 from datetime import datetime
 
-#from this section is marlon's group
+#from this section is marlon's portion
 """Help students in major parts of their everyday lives """
 from datetime import datetime
 class Event:
@@ -26,10 +26,10 @@ class Event:
         return (f"{self.title}: ({start_time_str} - {end_time_str})")
 
 
-#from this section is cat's section of work
+#from this section is cat's portion
 
 class Schedule:
-    "Creates an object for a student's class schedule
+    """Creates an object for a student's class schedule"""
     def __init__(self):
         """Initializes an empty list of events for the schedule."""
         self.events = []
@@ -81,7 +81,27 @@ class Schedule:
         if not self.events:
             return "The schedule is empty."
         return "\n".join([str(event) for event in sorted(self.events, key=lambda x: x.start_time)])
-
-
-
         
+    #this is nick's portion:
+
+    def add_recurring_event(self, event, recurrence, occurrences=10):
+        """adds recurring events to our schedule. the events are based on how many times an event occurs
+
+        :param event: an instance of the event class.
+        :param recurrence: a string ('daily', 'weekly') indicating the recurrence pattern.
+        :param occurrences: number of occurrences to add.
+        """
+        if recurrence not in ['daily', 'weekly']:
+            print("unknown pattern. use 'daily' or 'weekly'.")
+            return
+
+        interval = timedelta(days=1) if recurrence == 'daily' else timedelta(weeks=1)
+        for i in range(occurrences):
+            new_event = Event(
+                title=event.title,
+                start_time=event.start_time + i * interval,
+                end_time=event.end_time + i * interval,
+                importance=event.importance,
+                reccuring=recurrence
+            )
+            self.add_event(new_event)
