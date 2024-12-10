@@ -105,3 +105,6 @@ class Schedule:
                 reccuring=recurrence
             )
             self.add_event(new_event)
+
+
+jdfkjdfhdkjfdkfjndkm,d
